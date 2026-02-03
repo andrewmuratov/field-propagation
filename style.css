@@ -1,0 +1,236 @@
+:root {
+  color-scheme: light;
+  --bg: #0c1117;
+  --panel: #121a24;
+  --panel-soft: #0f1620;
+  --ink: #e5f0ff;
+  --muted: #97a8c1;
+  --accent: #5af0b2;
+  --accent-2: #6fc3ff;
+  --danger: #ff6b6b;
+  --stroke: rgba(133, 162, 202, 0.25);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Space Grotesk", "Sora", "Avenir Next", sans-serif;
+  background: radial-gradient(circle at top, #0f1a28, #070b10 65%);
+  color: var(--ink);
+  min-height: 100vh;
+}
+
+body.heat-mode {
+  background: radial-gradient(circle at top, #2a140b, #100704 65%);
+}
+
+.app {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  min-height: 100vh;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 28px;
+  border-bottom: 1px solid rgba(133, 162, 202, 0.15);
+  background: linear-gradient(120deg, rgba(21, 30, 43, 0.95), rgba(12, 18, 26, 0.95));
+  backdrop-filter: blur(8px);
+  gap: 20px;
+}
+
+body.heat-mode .toolbar {
+  border-bottom: 1px solid rgba(255, 140, 120, 0.25);
+  background: linear-gradient(120deg, rgba(70, 18, 18, 0.95), rgba(26, 10, 10, 0.95));
+}
+
+.brand-title {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.brand-subtitle {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.mode-switch {
+  display: flex;
+  border: 1px solid rgba(133, 162, 202, 0.2);
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--panel-soft);
+}
+
+body.heat-mode .mode-switch {
+  border: 1px solid rgba(255, 150, 120, 0.3);
+  background: rgba(36, 12, 10, 0.85);
+}
+
+.chip {
+  padding: 8px 14px;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 13px;
+  letter-spacing: 0.2px;
+}
+
+.chip.is-active {
+  background: rgba(90, 240, 178, 0.15);
+  color: var(--ink);
+}
+
+body.heat-mode .chip {
+  color: rgba(255, 224, 212, 0.8);
+}
+
+body.heat-mode .chip.is-active {
+  background: rgba(255, 146, 88, 0.22);
+  color: #ffe7dc;
+}
+
+.primary,
+.ghost {
+  padding: 9px 16px;
+  border-radius: 10px;
+  font-weight: 600;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.primary {
+  background: linear-gradient(120deg, #5af0b2, #6fc3ff);
+  color: #0c1117;
+}
+
+.primary.is-playing {
+  background: linear-gradient(120deg, #ff8f8f, #ffcf6f);
+}
+
+body.heat-mode .primary {
+  background: linear-gradient(120deg, #ff7a54, #ffc36f);
+  color: #260b05;
+}
+
+body.heat-mode .primary.is-playing {
+  background: linear-gradient(120deg, #ff5353, #ffb04d);
+}
+
+.ghost {
+  background: transparent;
+  border: 1px solid rgba(133, 162, 202, 0.25);
+  color: var(--ink);
+}
+
+body.heat-mode .ghost {
+  border: 1px solid rgba(255, 160, 130, 0.35);
+  color: #ffe3d6;
+}
+
+.stage {
+  position: relative;
+  height: calc(100vh - 90px);
+  padding: 18px;
+}
+
+#scene {
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  background: radial-gradient(circle at 20% 20%, rgba(111, 195, 255, 0.12), transparent 40%),
+    radial-gradient(circle at 80% 30%, rgba(90, 240, 178, 0.12), transparent 45%),
+    rgba(10, 16, 24, 0.85);
+  border: 1px solid rgba(133, 162, 202, 0.18);
+  display: block;
+}
+
+body.heat-mode #scene {
+  background: radial-gradient(circle at 20% 20%, rgba(255, 164, 87, 0.18), transparent 45%),
+    radial-gradient(circle at 80% 30%, rgba(255, 116, 102, 0.18), transparent 45%),
+    rgba(20, 8, 4, 0.9);
+}
+
+.is-hidden {
+  display: none !important;
+}
+
+.legend {
+  position: absolute;
+  right: 30px;
+  bottom: 30px;
+  background: rgba(12, 18, 26, 0.82);
+  border: 1px solid rgba(133, 162, 202, 0.18);
+  padding: 16px 18px;
+  border-radius: 12px;
+  width: min(320px, 90vw);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+body.heat-mode .legend {
+  background: rgba(26, 10, 8, 0.88);
+  border: 1px solid rgba(255, 155, 120, 0.28);
+}
+
+.legend-title {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+body.heat-mode .legend-title {
+  color: rgba(255, 200, 180, 0.8);
+}
+
+.legend ul {
+  list-style: none;
+  display: grid;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--ink);
+}
+
+.legend li::before {
+  content: "•";
+  color: var(--accent);
+  margin-right: 6px;
+}
+
+body.heat-mode .legend li::before {
+  color: #ff9a6b;
+}
+
+@media (max-width: 900px) {
+  .toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .stage {
+    height: calc(100vh - 160px);
+  }
+
+  .legend {
+    position: static;
+    margin-top: 14px;
+  }
+}

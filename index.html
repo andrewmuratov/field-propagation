@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Field Propagation</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="toolbar">
+      <div class="brand">
+        <div class="brand-title">Field Propagation</div>
+        <div class="brand-subtitle">Signal vs Heat · One Graph</div>
+      </div>
+      <div class="controls">
+        <div class="mode-switch" role="group" aria-label="Simulation mode">
+          <button id="modeSignal" class="chip is-active">Signal propagation</button>
+          <button id="modeHeat" class="chip">Heat diffusion</button>
+        </div>
+        <button id="playToggle" class="primary">Play</button>
+        <button id="generateSignal" class="ghost">Generate graph</button>
+        <button id="generateHeat" class="ghost is-hidden">Generate graph</button>
+        <button id="clearGraph" class="ghost">Clear</button>
+      </div>
+    </header>
+
+    <main class="stage">
+      <canvas id="scene"></canvas>
+      <div class="legend">
+        <div class="legend-title">How to build</div>
+        <ul>
+          <li>Click empty space to create a node.</li>
+          <li>Click a node to delete it (edit mode).</li>
+          <li>Long-press a node, drag to another to connect.</li>
+          <li>Use Generate graph for an instant connected network.</li>
+          <li>Press Play, then click nodes to inject pulse/heat.</li>
+        </ul>
+      </div>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
